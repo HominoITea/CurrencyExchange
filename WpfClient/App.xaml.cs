@@ -13,5 +13,6 @@ namespace WpfClient
     /// </summary>
     public partial class App : Application
     {
+        
     }
 }

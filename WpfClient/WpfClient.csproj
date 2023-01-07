@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{AFEABFBD-1397-4490-8BB9-B377FD156131}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>WpfApp1</RootNamespace>
-    <AssemblyName>WpfApp1</AssemblyName>
+    <RootNamespace>WpfClient</RootNamespace>
+    <AssemblyName>WpfClient</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -55,6 +55,32 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Events\BaseEvent.cs" />
+    <Compile Include="Events\IEventHandler.cs" />
+    <Compile Include="Models\CurrencyTable\MonthItemModel.cs" />
+    <Compile Include="Models\CurrencyTable\YearItemModel.cs" />
+    <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="ViewModels\BaseComands\RelayCommand.cs" />
+    <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\CurrencyTable\CurrencyRatesViewModel.cs" />
+    <Compile Include="ViewModels\CurrencyTable\CurrencyTableViewModel.cs" />
+    <Compile Include="ViewModels\CurrencyTable\YearItemViewModel.cs" />
+    <Compile Include="ViewModels\CurrencyTable\YearPickerViewModel.cs" />
+    <Compile Include="Views\CurrencyTable\Controls\CurrencyRatesControl.xaml.cs">
+      <DependentUpon>CurrencyRatesControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CurrencyTable\Controls\StartYearControl.xaml.cs">
+      <DependentUpon>StartYearControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CurrencyTable\Controls\YearItem.xaml.cs">
+      <DependentUpon>YearItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CurrencyTable\Controls\YearPickerControl.xaml.cs">
+      <DependentUpon>YearPickerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CurrencyTable\CurrencyTablePage.xaml.cs">
+      <DependentUpon>CurrencyTablePage.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -67,6 +93,30 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Resources\YearPickerResource.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CurrencyTable\Controls\CurrencyRatesControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CurrencyTable\Controls\StartYearControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CurrencyTable\Controls\YearItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CurrencyTable\Controls\YearPickerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CurrencyTable\CurrencyTablePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -93,6 +143,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewModels\CurrencyTable\Commands\" />
+    <Folder Include="Views\BaseControls\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
