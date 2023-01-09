@@ -17,6 +17,7 @@
                     Padding="5"
                     BorderThickness="1"
                     >
+                <!--BorderBrush="{StaticResource MahApps.Brushes.Accent}"-->
 
                 <Grid>
                     <Grid.RowDefinitions>
@@ -39,6 +40,8 @@
                         <Button Content="Сохранить"
                                 Margin="0,0,5,0"
                                 Command="{Binding SaveCommand}"/>
+                        <!--Style="{StaticResource ResourceButtonStyle}"-->
+
 
                     </StackPanel>
 
@@ -54,10 +57,21 @@
                               ItemsSource="{Binding Data, IsAsync=True}"
                               RenderOptions.EdgeMode="Aliased">
 
+                        <!--CellStyle="{StaticResource DynamicDataGridCellStyle}"-->
+                        <!---->
 
+
+                        <!--<behaviors:Interaction.Behaviors>
+                            <b:RegenerateColumnsBehavior IsEnabled="{Binding HasData}"
+                                                         VisibleColumns="{Binding VisibleColumns}" />
+                            <b:IsGridScrollingBehavior IsScrolling="{Binding SuspendUpdates, Mode=OneWayToSource}" />
+                        </behaviors:Interaction.Behaviors>-->
                     </DataGrid>
+
                 </Grid>
+
             </Border>
+
             <Border Grid.Column="0"
                     Grid.Row="1"
                     Margin="5,0,5,5"
@@ -65,6 +79,9 @@
                     BorderThickness="1"
                     >
             </Border>
+            
+            BorderBrush="{StaticResource MahApps.Brushes.Accent}"
+
         </Grid>
     </DataTemplate>
 </res:SharedResourceDictionary>
