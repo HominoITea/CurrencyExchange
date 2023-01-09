@@ -1,0 +1,69 @@
+﻿<res:SharedResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                              xmlns:res="clr-namespace:WpfClient.Views.Shared"
+                              xmlns:viewModel="clr-namespace:WpfClient.ViewModels"
+                              xmlns:converter="clr-namespace:WpfClient.Views.Converters"
+                              xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
+                              xmlns:b="clr-namespace:WpfClient.Views.Behavior">
+
+    <DataTemplate DataType="{x:Type viewModel:YearItemViewModel}">
+       
+        <Expander BorderThickness="0"
+                  Header="{Binding YearItem.Year}"
+                  IsExpanded="{Binding YearItem.IsSelected}"           
+                  Background="LightCyan">    
+            
+            <Expander.Resources>
+                <CollectionViewSource x:Key="MonthItems" Source="{Binding Path=YearItem.MonthItems}">
+                    <CollectionViewSource.GroupDescriptions>
+                        <PropertyGroupDescription PropertyName="Quarter" />
+                    </CollectionViewSource.GroupDescriptions>
+                </CollectionViewSource>                
+            </Expander.Resources>
+            
+            <ListBox ItemsSource="{Binding Source = {StaticResource MonthItems}}" BorderThickness="0" Margin="0">
+                <ListBox.GroupStyle>
+                    <GroupStyle>
+                        <GroupStyle.HeaderTemplate>
+                            <DataTemplate>
+                                <TextBlock Margin="0" Background="Cyan" Padding="10, 5, 0,5" FontSize="12" Text="{Binding Name}" />
+                            </DataTemplate>
+                        </GroupStyle.HeaderTemplate>
+                    </GroupStyle>
+                </ListBox.GroupStyle>                
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+                        <Setter Property="Padding"  Value="0"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="Background" Value="Yellow"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                    <Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        Background="{TemplateBinding Background}" 
+                                        Padding="0"
+                                        SnapsToDevicePixels="true">
+                                        <Button Command="{Binding Path=DataContext.SwitchToMonth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Expander}}}" 
+                                            CommandParameter="{Binding TargetDate}" 
+                                            Padding="10, 5, 0,5" 
+                                            FontSize="12" 
+                                            Content="{Binding MonthName}"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListBox.ItemContainerStyle>                
+            </ListBox>
+            
+            <behaviors:Interaction.Behaviors>
+                <b:ExpanderStateBehavior Mediator="{Binding Mediator}" IsExpanded="{Binding YearItem.IsSelected, Mode=TwoWay}"/>
+            </behaviors:Interaction.Behaviors>
+            
+        </Expander>
+        
+    </DataTemplate>
+</res:SharedResourceDictionary>

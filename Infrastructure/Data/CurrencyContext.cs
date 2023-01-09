@@ -1,31 +1,55 @@
 ﻿using System.Data.Entity;
+using System.Runtime.Remoting.Contexts;
 using Core.Entities;
+using Core.Interfaces;
+using Infrastructure.Data.Shared;
 
 namespace Infrastructure.Data
 {
     public class CurrencyContext : DbContext
     {
-        // Контекст настроен для использования строки подключения "CurrencyContext" из файла конфигурации  
-        // приложения (App.config или Web.config). По умолчанию эта строка подключения указывает на базу данных 
-        // "WcfServer.CurrencyModel" в экземпляре LocalDb. 
-        // 
-        // Если требуется выбрать другую базу данных или поставщик базы данных, измените строку подключения "CurrencyModel" 
-        // в файле конфигурации приложения.
-        DbSet<Currency> Currencies { get; set; }
-        DbSet<CurrencyRate> CurrenciesRates { get; set; }
+        public DbSet<Currency> Currencies { get; set; }
+        
+        public DbSet<CurrenciesPair> CurrenciesPair { get; set; }
+
+        public DbSet<CurrenciesPairRate> CurrenciesRates { get; set; }
+
         public CurrencyContext() : base("name=CurrencyContext")
         {
+            Database.SetInitializer(new DatabaseInitializer());
         }
 
-        // Добавьте DbSet для каждого типа сущности, который требуется включить в модель. Дополнительные сведения 
-        // о настройке и использовании модели Code First см. в статье http://go.microsoft.com/fwlink/?LinkId=390109.
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
 
-        // public virtual DbSet<MyEntity> MyEntities { get; set; }
+            modelBuilder.Configurations.Add(new CurrencyConfiguration());
+            modelBuilder.Configurations.Add(new CurrencyPairConfiguration());
+            modelBuilder.Configurations.Add(new CurrencyRateConfiguration());
+
+            
+
+            modelBuilder
+              .Entity<CurrenciesPairRate>()
+              .HasRequired(c => c.Pair)
+              .WithMany()
+              .HasForeignKey(c => c.PairId)
+              .WillCascadeOnDelete(true);
+
+
+            modelBuilder
+              .Entity<CurrenciesPair>()
+              .HasRequired(c => c.ToCurrency)
+              .WithMany()
+              .HasForeignKey(c => c.ToCurrencyId)
+              .WillCascadeOnDelete(false);
+
+            modelBuilder
+              .Entity<CurrenciesPair>()
+              .HasRequired(c => c.FromCurrency)
+              .WithMany()
+              .HasForeignKey(c => c.FromCurrencyId)
+              .WillCascadeOnDelete(false);
+        }
     }
-
-    //public class MyEntity
-    //{
-    //    public int Id { get; set; }
-    //    public string Name { get; set; }
-    //}
 }

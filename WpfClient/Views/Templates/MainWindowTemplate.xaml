@@ -1,0 +1,22 @@
+﻿<res:SharedResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                              xmlns:res="clr-namespace:WpfClient.Views.Shared"
+                              xmlns:viewModel="clr-namespace:WpfClient.ViewModels">
+    <DataTemplate DataType="{x:Type viewModel:MainViewModel}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <ContentPresenter Content="{Binding Path=YearPicker}"/>
+            </Grid>
+        </Grid>        
+    </DataTemplate>
+
+</res:SharedResourceDictionary>

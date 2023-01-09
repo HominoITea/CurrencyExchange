@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Core.Entities;
+using Core.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -6,14 +8,13 @@ using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
-using Core.Entities;
-using Core.Interfaces;
 
 namespace Infrastructure.Data
 {
     public class Repository<T>: IAsyncRepository<T> where T: BaseEntity
     {
-        private readonly CurrencyContext _context;
+        private CurrencyContext _context;
+
         public Repository(CurrencyContext context)
         {
             _context = context;
@@ -42,12 +43,13 @@ namespace Infrastructure.Data
             return await _context.Set<T>().ToListAsync<T>();
         }
 
-        public async Task<IReadOnlyList<T>> ListByDateAsync(int year, int month)
+        public async Task<IReadOnlyList<T>> ListByPeriodAsync(int year, int month)
         {
             var slice = await _context.Set<T>()
                 .OrderBy((x) => x.Id)
-                .Where(x => x.Date.Year == year && x.Date.Month == month)
+                .Where(x => x.Created.Year == year && x.Created.Month == month)
                 .ToListAsync();
+
             return slice;
         }
     }

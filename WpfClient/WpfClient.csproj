@@ -14,6 +14,21 @@
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -35,8 +50,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=4.9.4.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.9.4\lib\net45\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.Wcf, Version=4.1.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.Wcf.4.1.0\lib\net45\Autofac.Integration.Wcf.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.39\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Activation" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,33 +82,52 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Connected Services\WebServices\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Events\BaseEvent.cs" />
     <Compile Include="Events\IEventHandler.cs" />
-    <Compile Include="Models\CurrencyTable\MonthItemModel.cs" />
-    <Compile Include="Models\CurrencyTable\YearItemModel.cs" />
+    <Compile Include="Models\CurrencyRatesModel.cs" />
+    <Compile Include="Models\MonthItemModel.cs" />
+    <Compile Include="Models\YearItemModel.cs" />
     <Compile Include="Properties\Annotations.cs" />
-    <Compile Include="ViewModels\BaseComands\RelayCommand.cs" />
-    <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="ViewModels\CurrencyTable\CurrencyRatesViewModel.cs" />
-    <Compile Include="ViewModels\CurrencyTable\CurrencyTableViewModel.cs" />
-    <Compile Include="ViewModels\CurrencyTable\YearItemViewModel.cs" />
-    <Compile Include="ViewModels\CurrencyTable\YearPickerViewModel.cs" />
-    <Compile Include="Views\CurrencyTable\Controls\CurrencyRatesControl.xaml.cs">
+    <Compile Include="Services\CurrencyDataService.cs" />
+    <Compile Include="Services\Intefaces\ICurrencyDataService.cs" />
+    <Compile Include="ViewModels\DataGridViewModel.cs" />
+    <Compile Include="ViewModels\Interfaces\IDataGridViewModel.cs" />
+    <Compile Include="ViewModels\Interfaces\IMainViewModel.cs" />
+    <Compile Include="ViewModels\Interfaces\IViewModel.cs" />
+    <Compile Include="ViewModels\Interfaces\IYearPickerViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="Views\Behavior\DataGridColumnBehavior.cs" />
+    <Compile Include="Views\Behavior\ExpanderStateBehavior.cs" />
+    <Compile Include="Views\Converters\BoolConverter.cs" />
+    <Compile Include="Views\Shared\SharedResourceDictionary.cs" />
+    <Compile Include="ViewModels\Shared\RelayCommand.cs" />
+    <Compile Include="ViewModels\Shared\BaseViewModel.cs" />
+    <Compile Include="ViewModels\CurrencyRatesViewModel.cs" />
+    <Compile Include="ViewModels\CurrencyTableViewModel.cs" />
+    <Compile Include="ViewModels\YearItemViewModel.cs" />
+    <Compile Include="ViewModels\YearPickerViewModel.cs" />
+    <Compile Include="Views\Controls\CurrencyRatesControl.xaml.cs">
       <DependentUpon>CurrencyRatesControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CurrencyTable\Controls\StartYearControl.xaml.cs">
-      <DependentUpon>StartYearControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\CurrencyTable\Controls\YearItem.xaml.cs">
-      <DependentUpon>YearItem.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\CurrencyTable\Controls\YearPickerControl.xaml.cs">
-      <DependentUpon>YearPickerControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\CurrencyTable\CurrencyTablePage.xaml.cs">
-      <DependentUpon>CurrencyTablePage.xaml</DependentUpon>
-    </Compile>
-    <Page Include="MainWindow.xaml">
+    <Compile Include="Views\Controls\DataGridColumnControl.cs" />
+    <Page Include="Views\Templates\DataGridCellsTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Templates\DataGridTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Templates\YearItemTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -89,31 +135,19 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Resources\YearPickerResource.xaml">
+    <Page Include="Views\Controls\CurrencyRatesControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\CurrencyTable\Controls\CurrencyRatesControl.xaml">
+    <Page Include="Views\Templates\YearPickerTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\CurrencyTable\Controls\StartYearControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\CurrencyTable\Controls\YearItem.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\CurrencyTable\Controls\YearPickerControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\CurrencyTable\CurrencyTablePage.xaml">
+    <Page Include="Views\Templates\MainWindowTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -136,6 +170,18 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Connected Services\WebServices\CurrencyWebService.wsdl" />
+    <None Include="Connected Services\WebServices\CurrencyWebService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\WebServices\CurrencyWebService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\WebServices\CurrencyWebService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\Core.Entities.CurrenciesPairRate.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -145,8 +191,54 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ViewModels\CurrencyTable\Commands\" />
-    <Folder Include="Views\BaseControls\" />
+    <ProjectReference Include="..\ClientShared\ClientShared.csproj">
+      <Project>{e6d03020-fd77-40e6-9c45-37e8dda7debb}</Project>
+      <Name>ClientShared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{8B51F7A9-B554-4E1D-A0CE-3337B20F7756}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\WebServices\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\WebServices\CurrencyWebService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\WebServices\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\WebServices\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\WebServices\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 и x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
 </Project>

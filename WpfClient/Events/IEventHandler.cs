@@ -8,6 +8,6 @@ namespace WpfClient.Events
 {
     public interface IEventHandler
     {
-        void Notify(BaseEvent event);
+        void Notify(BaseEvent baseEvent);
     }
 }

@@ -1,0 +1,28 @@
+﻿<res:SharedResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                              xmlns:res="clr-namespace:WpfClient.Views.Shared"
+                              xmlns:viewModel="clr-namespace:WpfClient.ViewModels"
+                              xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
+                              xmlns:b="clr-namespace:WpfClient.Views.Behavior">
+    
+    <DataTemplate DataType="{x:Type viewModel:YearPickerViewModel}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+            <Grid Row="0">
+                <CalendarButton Margin="3" FontSize="12" Content="Ранее" Command="{Binding UpdateCollection}" CommandParameter="-5"></CalendarButton>
+            </Grid>
+            <Grid Row="1">
+                <ItemsControl ItemsSource="{Binding Items}">
+                </ItemsControl>
+            </Grid>
+            <Grid Row="2">
+                <CalendarButton Margin="3" FontSize="12" Content="Позднее" Command="{Binding UpdateCollection}" CommandParameter="5"></CalendarButton>
+            </Grid>
+        </Grid>
+    </DataTemplate>
+
+</res:SharedResourceDictionary>

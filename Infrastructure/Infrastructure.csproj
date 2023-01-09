@@ -42,6 +42,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,14 +53,20 @@
   <ItemGroup>
     <Compile Include="Data\CurrencyContext.cs" />
     <Compile Include="Data\Repository.cs" />
+    <Compile Include="Data\Shared\CurrencyConfiguration.cs" />
+    <Compile Include="Data\Shared\CurrencyPairConfiguration.cs" />
+    <Compile Include="Data\Shared\CurrencyRateConfiguration.cs" />
+    <Compile Include="Data\Shared\DatabaseInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\CurrencyService.cs" />
+    <Compile Include="Services\Contracts\ICurrencyService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Domain\Core.csproj">
+    <ProjectReference Include="..\Core\Core.csproj">
       <Project>{8B51F7A9-B554-4E1D-A0CE-3337B20F7756}</Project>
       <Name>Core</Name>
     </ProjectReference>

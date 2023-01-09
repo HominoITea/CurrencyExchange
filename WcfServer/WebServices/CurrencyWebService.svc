@@ -1,1 +1,9 @@
-﻿<%@ ServiceHost Language="C#" Debug="true" Service="WcfServer.WebServices.CurrencyWebService" CodeBehind="CurrencyWebService.svc.cs" %>
+﻿<%@ ServiceHost 
+    Language="C#" 
+    Debug="true" 
+    Service="CurrencyService"
+    Factory="Autofac.Integration.Wcf.AutofacServiceHostFactory, Autofac.Integration.Wcf"    
+%>
+
+
+

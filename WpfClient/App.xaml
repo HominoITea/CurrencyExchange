@@ -1,9 +1,16 @@
 ﻿<Application x:Class="WpfClient.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:WpfClient"
-             StartupUri="MainWindow.xaml">
+             xmlns:res="clr-namespace:WpfClient.Views.Shared">
+    <!--StartupUri="MainWindow.xaml">-->
     <Application.Resources>
-         
+        <res:SharedResourceDictionary>
+            <res:SharedResourceDictionary.MergedDictionaries>
+                <res:SharedResourceDictionary Source="Views/Templates/YearPickerTemplate.xaml"/>
+                <res:SharedResourceDictionary Source="Views/Templates/YearItemTemplate.xaml"/>
+                <res:SharedResourceDictionary Source="Views/Templates/MainWindowTemplate.xaml"/>
+                <res:SharedResourceDictionary Source="Views/Templates/DataGridTemplate.xaml"/>
+            </res:SharedResourceDictionary.MergedDictionaries>
+        </res:SharedResourceDictionary>
     </Application.Resources>
 </Application>
