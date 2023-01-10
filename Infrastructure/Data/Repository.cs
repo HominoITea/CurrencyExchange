@@ -43,7 +43,7 @@ namespace Infrastructure.Data
             return await _context.Set<T>().ToListAsync<T>();
         }
 
-        public async Task<IReadOnlyList<T>> ListByPeriodAsync(int year, int month)
+        public async Task<IList<T>> ListByPeriodAsync(int year, int month)
         {
             var slice = await _context.Set<T>()
                 .OrderBy((x) => x.Id)

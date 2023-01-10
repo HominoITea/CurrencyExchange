@@ -14,8 +14,6 @@ namespace WpfClient.Views.Behavior
     {
         private Dictionary<string, DataGridColumnControl> _columns;
         private IReadOnlyList<string> _columnsName;
-        private DataTemplate _dayOfMonth;
-        private DataTemplate _currencyRate;
 
         protected override void OnAttached()
         {
@@ -43,25 +41,23 @@ namespace WpfClient.Views.Behavior
 
             e.Column = new DataGridColumnControl(propertyDescriptor.Name)
             {
-                Header = !string.IsNullOrEmpty(display.DisplayName) ? display.DisplayName : "Col",
+                Header = !string.IsNullOrEmpty(display.DisplayName) 
+                            ? display.DisplayName 
+                            : "Col",
+
                 CellTemplate = GetTemplate(propertyDescriptor.PropertyType),
-                IsReadOnly = propertyDescriptor.PropertyType == typeof(DateTime) ? false : true,
+                IsReadOnly = propertyDescriptor.PropertyType == typeof(DateTime),
             };
         }
 
         private DataTemplate GetTemplate(Type propertyType) 
         {
-            switch (propertyType.ToString())
+            var dic = new Dictionary<Type, DataTemplate>
             {
-                case nameof(DateTime):
-                    return _dayOfMonth;
-
-                case nameof(Double):
-                    return _currencyRate;
-
-                default:
-                    throw new MissingTemplateException();
-            }    
+                { typeof(DateTime), Application.Current.Resources["DayNumberCellTemplate"] as DataTemplate },
+                { typeof(double), Application.Current.Resources["CurrencyRateCellTemplate"] as DataTemplate },
+            };
+            return dic[propertyType];  
         }
         
 
@@ -69,10 +65,6 @@ namespace WpfClient.Views.Behavior
         {
             _columns = new Dictionary<string, DataGridColumnControl>();
             _columnsName = new List<string>();
-
-            _dayOfMonth = Application.Current.Resources["DayNumberCellTemplate"] as DataTemplate;
-            _currencyRate = Application.Current.Resources["CurrencyRateCellTemplate"] as DataTemplate;
-
         }
     }
 }

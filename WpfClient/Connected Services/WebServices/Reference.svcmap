@@ -25,7 +25,7 @@
   </MetadataSources>
   <Metadata>
     <MetadataFile FileName="CurrencyWebService.disco" MetadataType="Disco" ID="f24a5107-5ef6-4be2-813b-662d6662cfe9" SourceId="1" SourceUrl="http://localhost:56857/WebServices/CurrencyWebService.svc?disco" />
-    <MetadataFile FileName="CurrencyWebService2.xsd" MetadataType="Schema" ID="b551bad7-f021-4790-ba55-50697d993ab9" SourceId="1" SourceUrl="http://localhost:56857/WebServices/CurrencyWebService.svc?xsd=xsd2" />
+    <MetadataFile FileName="CurrencyWebService2.xsd" MetadataType="Schema" ID="8f0f55fa-1b2b-44c0-be88-386657e0bc43" SourceId="1" SourceUrl="http://localhost:56857/WebServices/CurrencyWebService.svc?xsd=xsd2" />
     <MetadataFile FileName="CurrencyWebService.wsdl" MetadataType="Wsdl" ID="63de3497-21f3-4f09-b6e0-051259f8caab" SourceId="1" SourceUrl="http://localhost:56857/WebServices/CurrencyWebService.svc?wsdl" />
     <MetadataFile FileName="CurrencyWebService.xsd" MetadataType="Schema" ID="60f57281-cb5b-4a0e-af5a-c60e8b17f840" SourceId="1" SourceUrl="http://localhost:56857/WebServices/CurrencyWebService.svc?xsd=xsd0" />
     <MetadataFile FileName="CurrencyWebService1.xsd" MetadataType="Schema" ID="5809e5aa-cb4a-419b-adfc-bc97073af552" SourceId="1" SourceUrl="http://localhost:56857/WebServices/CurrencyWebService.svc?xsd=xsd1" />

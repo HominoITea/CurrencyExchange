@@ -80,7 +80,7 @@
                     >
             </Border>
             
-            BorderBrush="{StaticResource MahApps.Brushes.Accent}"
+            <!--BorderBrush="{StaticResource MahApps.Brushes.Accent}"-->
 
         </Grid>
     </DataTemplate>

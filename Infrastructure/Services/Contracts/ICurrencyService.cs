@@ -16,6 +16,6 @@ namespace Infrastructure.Services.Contracts
         Task<IReadOnlyList<CurrenciesPairRate>> ListAllAsync();
 
         [OperationContract(AsyncPattern = true)]
-        Task<IReadOnlyCollection<CurrenciesPairRate>> ListByPeriodAsync(int year, int month);
+        Task<IList<CurrenciesPairRate>> ListByPeriodAsync(int year, int month);
     }
 }

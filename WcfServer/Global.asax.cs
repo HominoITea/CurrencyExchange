@@ -8,7 +8,7 @@ namespace WcfServer
     {
         protected void Application_Start(object sender, EventArgs e)
         {
-            AutofacHostFactory.Container = Bootstrap.BuildContainer();            
+            AutofacHostFactory.Container = Bootstrap.BuildContainer();
         }
 
         protected void Session_Start(object sender, EventArgs e)

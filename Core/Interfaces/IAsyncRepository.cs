@@ -11,7 +11,7 @@ namespace Core.Interfaces
     {
         Task<IReadOnlyList<T>> ListAllAsync();
 
-        Task<IReadOnlyList<T>> ListByPeriodAsync(int year, int month);
+        Task<IList<T>> ListByPeriodAsync(int year, int month);
 
         Task UpdateAllAsync(List<T> entities);
         Task AddAllAsync(List<T> entities);

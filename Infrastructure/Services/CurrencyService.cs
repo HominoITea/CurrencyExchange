@@ -21,10 +21,10 @@ namespace Infrastructure.Services
             return await _repository.ListAllAsync();
         }
 
-        public async Task<IReadOnlyCollection<CurrenciesPairRate>> ListByPeriodAsync(int year, int month)
+        public async Task<IList<CurrenciesPairRate>> ListByPeriodAsync(int year, int month)
         {
             var result = await _repository.ListByPeriodAsync(year, month);
-            return result;
+            return result.ToList();
         }
     }
 }
