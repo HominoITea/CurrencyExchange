@@ -52,6 +52,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\CurrencyContext.cs" />
+    <Compile Include="Data\QueryData.cs" />
+    <Compile Include="Data\CommandData.cs" />
     <Compile Include="Data\Repository.cs" />
     <Compile Include="Data\Shared\CurrencyConfiguration.cs" />
     <Compile Include="Data\Shared\CurrencyPairConfiguration.cs" />

@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Data
 {
-    public class Repository<T>: IAsyncRepository<T> where T: BaseEntity
+    public class CommandData<T>: ICommandData<T> where T: BaseEntity
     {
-        private CurrencyContext _context;
+        private DbContext _context;
 
-        public Repository(CurrencyContext context)
+        public CommandData(DbContext context)
         {
             _context = context;
         }
@@ -36,19 +36,6 @@ namespace Infrastructure.Data
                 _context.Entry(entity).State = EntityState.Added;
             }
             await _context.SaveChangesAsync();
-        }
-
-        public async Task<IReadOnlyList<T>> ListAllAsync()
-        {
-            return await _context.Set<T>().ToListAsync<T>();
-        }
-
-        public async Task<IList<T>> ListByPeriodAsync(int year, int month)
-        {
-            return await _context.Set<T>()
-                .OrderBy((x) => x.Id)
-                .Where(x => x.Created.Year == year && x.Created.Month == month)
-                .ToListAsync();
         }
     }
 }

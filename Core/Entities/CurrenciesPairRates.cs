@@ -8,6 +8,6 @@ namespace Core.Entities
 {
     public class CurrenciesPairRates 
     {
-        public IList<CurrenciesPairRate> Rates { get; set; }
+        public IList<IGrouping<DateTime, CurrenciesPairRate>> RatesByPeriod { get; set; }
     }
 }

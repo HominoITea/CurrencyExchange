@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 namespace Infrastructure.Services.Contracts
 {
     [ServiceContract]
-    public interface ICurrencyService : IService 
+    public interface ICurrencyService 
     {
         [OperationContract(AsyncPattern = true)]
         Task<IReadOnlyList<CurrenciesPairRate>> ListAllAsync();
 
         [OperationContract(AsyncPattern = true)]
-        Task<IList<CurrenciesPairRate>> ListByPeriodAsync(int year, int month);
+        Task<IDictionary<DateTime, IList<CurrenciesPairRate>>> ListByPeriodAsync(int year, int month);
     }
 }

@@ -42,14 +42,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DTOs\CurrencyDTO.cs" />
+    <Compile Include="DTOs\CurrencyInPeriodDTO.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\Currency.cs" />
     <Compile Include="Entities\CurrenciesPair.cs" />
     <Compile Include="Entities\CurrenciesPairRate.cs" />
     <Compile Include="Entities\CurrenciesPairRates.cs" />
     <Compile Include="Interfaces\IAsyncRepository.cs" />
-    <Compile Include="Interfaces\IService.cs" />
+    <Compile Include="Interfaces\ICommandData.cs" />
+    <Compile Include="Interfaces\IQueryData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

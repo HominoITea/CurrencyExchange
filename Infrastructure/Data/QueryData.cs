@@ -11,32 +11,14 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Data
 {
-    public class Repository<T>: IAsyncRepository<T> where T: BaseEntity
+    public class QueryData<T>: IQueryData<T> where T: BaseEntity
     {
-        private CurrencyContext _context;
+        private readonly DbContext _context;
 
-        public Repository(CurrencyContext context)
+        public QueryData(DbContext context)
         {
             _context = context;
-        }
-        
-        public async Task UpdateAllAsync(List<T> entities)
-        {
-            foreach (var entity in entities)
-            {
-                _context.Entry(entity).State = EntityState.Modified;
-            }
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task AddAllAsync(List<T> entities)
-        {
-            foreach (var entity in entities)
-            {
-                _context.Entry(entity).State = EntityState.Added;
-            }
-            await _context.SaveChangesAsync();
-        }
+        }      
 
         public async Task<IReadOnlyList<T>> ListAllAsync()
         {

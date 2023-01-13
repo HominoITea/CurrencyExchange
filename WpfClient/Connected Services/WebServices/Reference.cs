@@ -21,16 +21,17 @@ namespace WpfClient.WebServices {
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Core.Entities.BaseEntity))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Core.Entities.CurrenciesPair))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Core.Entities.Currency))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.Generic.Dictionary<System.DateTime, System.Collections.Generic.List<Core.Entities.CurrenciesPairRate>>))]
         object ListAll();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICurrencyService/ListAll", ReplyAction="http://tempuri.org/ICurrencyService/ListAllResponse")]
         System.Threading.Tasks.Task<object> ListAllAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICurrencyService/ListByPeriod", ReplyAction="http://tempuri.org/ICurrencyService/ListByPeriodResponse")]
-        System.Collections.Generic.List<Core.Entities.CurrenciesPairRate> ListByPeriod(int year, int month);
+        System.Collections.Generic.Dictionary<System.DateTime, System.Collections.Generic.List<Core.Entities.CurrenciesPairRate>> ListByPeriod(int year, int month);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICurrencyService/ListByPeriod", ReplyAction="http://tempuri.org/ICurrencyService/ListByPeriodResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<Core.Entities.CurrenciesPairRate>> ListByPeriodAsync(int year, int month);
+        System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<System.DateTime, System.Collections.Generic.List<Core.Entities.CurrenciesPairRate>>> ListByPeriodAsync(int year, int month);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -68,11 +69,11 @@ namespace WpfClient.WebServices {
             return base.Channel.ListAllAsync();
         }
         
-        public System.Collections.Generic.List<Core.Entities.CurrenciesPairRate> ListByPeriod(int year, int month) {
+        public System.Collections.Generic.Dictionary<System.DateTime, System.Collections.Generic.List<Core.Entities.CurrenciesPairRate>> ListByPeriod(int year, int month) {
             return base.Channel.ListByPeriod(year, month);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<Core.Entities.CurrenciesPairRate>> ListByPeriodAsync(int year, int month) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<System.DateTime, System.Collections.Generic.List<Core.Entities.CurrenciesPairRate>>> ListByPeriodAsync(int year, int month) {
             return base.Channel.ListByPeriodAsync(year, month);
         }
     }
